@@ -45,6 +45,6 @@ export const fetchAllArtByKeyword = async ({ keyword = 'landscape', maxCount = 1
  */
 export const fetchArtworkById = async (id) => { // TODO add property filtering
   const [err, data] = await fetchHandler(`${BASE_URL}${ARTWORKS_ROUTE}/${id}`);
-  if (err) return [];
-  return data.data;
+  if (err) return [err, null];
+  return [null, data.data];
 }
