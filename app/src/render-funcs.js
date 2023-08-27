@@ -18,7 +18,7 @@ export const mainSetup = (mainEl) => {
       <button type="submit">Search!</button>
     </form>
 
-    <dialog id="selected-painting">
+    <dialog id="selected-painting-modal">
       <form id="close-modal" method="dialog"><button>X</button></form>
       <p>Painting Info</p>
     </dialog>
@@ -31,7 +31,7 @@ export const mainSetup = (mainEl) => {
 
   const paintingsContainer = document.getElementById('paintings-container');
   const searchForm = document.getElementById('search-form');
-  const selectedPaintingModal = document.getElementById('selected-painting');
+  const selectedPaintingModal = document.getElementById('selected-painting-modal');
 
   return { searchForm, paintingsContainer, selectedPaintingModal };
 }
@@ -62,3 +62,5 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
     parentEl.append(cardEl);
   });
 };
+
+export const getSelectedPaintingModal = () => document.querySelector('#selected-painting-modal');
