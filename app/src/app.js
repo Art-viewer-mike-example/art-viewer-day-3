@@ -14,4 +14,20 @@ export default async function app(mainEl) {
     if (!e.target.matches('button')) return;
     selectedPaintingModal.showModal();
   });
+
+  selectedPaintingModal.addEventListener('click', (e) => {
+    if (e.target.id === selectedPaintingModal.id) {
+      const modalBox = e.target.getBoundingClientRect();
+      const mousePosition = { x: e.clientX, y: e.clientY };
+
+      const clickedInDialog = (
+        modalBox.top <= mousePosition.y &&
+        mousePosition.y <= modalBox.top + modalBox.height &&
+        modalBox.left <= mousePosition.x &&
+        mousePosition.x <= modalBox.left + modalBox.width
+      );
+
+      if (!clickedInDialog) selectedPaintingModal.close();
+    };
+  });
 }
