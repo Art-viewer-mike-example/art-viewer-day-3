@@ -18,6 +18,13 @@ export const mainSetup = (mainEl) => {
       <button type="submit">Search!</button>
     </form>
 
+    <dialog id="selected-painting">
+      <p>Greetings, one and all!</p>
+      <form method="dialog">
+        <button>OK</button>
+      </form>
+    </dialog>
+
     <div id="paintings">
       <h2>Paintings</h2>
       <div id="paintings-container"></div>
@@ -26,8 +33,9 @@ export const mainSetup = (mainEl) => {
 
   const paintingsContainer = document.getElementById('paintings-container');
   const searchForm = document.getElementById('search-form');
+  const selectedPainting = document.getElementById('selected-painting');
 
-  return { searchForm, paintingsContainer };
+  return { searchForm, paintingsContainer, selectedPainting };
 }
 
 export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
@@ -48,7 +56,11 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
     img.src = `https://www.artic.edu/iiif/2/${image_id}/full/${artworkSize},/0/default.jpg`;
     img.addEventListener('error', () => cardEl.remove());
 
-    cardEl.append(h3, img);
+    const button = document.createElement('button');
+    button.textContent = 'More Info';
+    button.dataset.imageId = image_id;
+
+    cardEl.append(h3, img, button);
     parentEl.append(cardEl);
   });
 };
