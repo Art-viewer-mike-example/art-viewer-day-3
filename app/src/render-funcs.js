@@ -1,6 +1,23 @@
 export const mainSetup = (mainEl) => {
   mainEl.innerHTML = `
     <h1>ArtViewer App</h1>
+
+    <form id="search-form" aria-labelledby="form-heading">
+      <h2 id="form-heading">Search For Paintings By Keyword</h2>
+      <label for="search-input">Keyword:</label>
+      <input type="text" id="search-input" />
+      <fieldset>
+        <legend>Select the number of results you'd like</legend>
+        <input type="radio" id="option-10" name="maxCount" value="10" checked>
+        <label for="option-10">10</label><br>
+        <input type="radio" id="option-25" name="maxCount" value="25">
+        <label for="option-25">25</label><br>
+        <input type="radio" id="option-50" name="maxCount" value="50">
+        <label for="option-50">50</label>
+      </fieldset>
+      <button type="submit">Search!</button>
+    </form>
+
     <div id="paintings">
       <h2>Paintings</h2>
       <div id="paintings-container"></div>
