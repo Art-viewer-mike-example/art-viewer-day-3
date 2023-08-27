@@ -40,7 +40,7 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
   const existingTitles = new Set();
   parentEl.innerHTML = '';
 
-  artworks.forEach(({ title, image_id, artwork_type_title}) => {
+  artworks.forEach(({ id, title, image_id, artwork_type_title}) => {
     if (artwork_type_title !== 'Painting' || existingTitles.has(title.toLowerCase())) return;
     existingTitles.add(title.toLowerCase());
 
@@ -57,6 +57,8 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
     const button = document.createElement('button');
     button.textContent = 'More Info';
     button.dataset.imageId = image_id;
+    button.dataset.title = title;
+    button.dataset.artworkId = id;
 
     cardEl.append(h3, img, button);
     parentEl.append(cardEl);

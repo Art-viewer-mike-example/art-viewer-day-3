@@ -14,6 +14,7 @@ export const handleSearchSubmit = async (e) => {
 
 export const handleOpenPaintingModalFromArtworks = (e) => {
   if (!e.target.matches('button')) return;
+  console.log('e.target.dataset:', e.target.dataset);
   document.querySelector('#selected-painting-modal').showModal();
 }
 
