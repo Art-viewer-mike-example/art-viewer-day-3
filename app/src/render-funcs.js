@@ -5,7 +5,7 @@ export const mainSetup = (mainEl) => {
     <form id="search-form" aria-labelledby="form-heading">
       <h2 id="form-heading">Search For Paintings By Keyword</h2>
       <label for="search-input">Keyword:</label>
-      <input type="text" id="search-input" />
+      <input type="text" id="search-input" name="keyword" />
       <fieldset>
         <legend>Select the number of results you'd like</legend>
         <input type="radio" id="option-10" name="maxCount" value="10" checked>
@@ -25,12 +25,14 @@ export const mainSetup = (mainEl) => {
   `;
 
   const paintingsContainer = document.getElementById('paintings-container');
+  const searchForm = document.getElementById('search-form');
 
-  return { paintingsContainer };
+  return { searchForm, paintingsContainer };
 }
 
 export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
   const existingTitles = new Set();
+  parentEl.innerHTML = '';
 
   artworks.forEach(({ title, image_id, artwork_type_title}) => {
     if (artwork_type_title !== 'Painting' || existingTitles.has(title.toLowerCase())) return;
