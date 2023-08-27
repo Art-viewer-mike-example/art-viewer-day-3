@@ -21,7 +21,7 @@ const fetchHandler = async (url, options = {}) => {
  * @param {number} maxCount - The maximum number of artworks to return
  * @returns {Promise<[Artwork]>} An array of artworks
  */
-export const fetchAllArtByKeyword = async ({ keyword = 'landscape', maxCount = 10 } = {}) => {
+export const fetchAllArtByKeyword = async ({ keyword = 'landscape', maxCount = 25 } = {}) => {
   const artworksByKeywordUrl = new URL(BASE_URL);
   // You can just use a string, but the URL object is more readable for long urls.
   // Plus, your keyword is automatically encoded for you!
