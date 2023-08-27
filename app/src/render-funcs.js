@@ -20,6 +20,7 @@ export const mainSetup = (mainEl) => {
 
     <dialog id="selected-painting-modal">
       <form id="close-modal" method="dialog"><button>X</button></form>
+      <div id="painting-preload-info"></div>
       <div id="painting-info"></div>
     </dialog>
 
