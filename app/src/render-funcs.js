@@ -8,18 +8,18 @@ export const mainSetup = (mainEl) => {
       <input type="text" id="search-input" name="keyword" />
       <fieldset>
         <legend>Select the number of results you'd like</legend>
-        <input type="radio" id="option-10" name="maxCount" value="10" checked>
+        <input type="radio" id="option-10" name="maxCount" value="10" aria-label="Return up to 10 artworks" checked>
         <label for="option-10">10</label><br>
-        <input type="radio" id="option-25" name="maxCount" value="25">
+        <input type="radio" id="option-25" name="maxCount" value="25" aria-label="Return up to 25 artworks">
         <label for="option-25">25</label><br>
-        <input type="radio" id="option-50" name="maxCount" value="50">
+        <input type="radio" id="option-50" name="maxCount" value="50" aria-label="Return up to 50 artworks">
         <label for="option-50">50</label>
       </fieldset>
       <button type="submit">Search!</button>
     </form>
 
     <dialog id="selected-painting-modal">
-      <form id="close-modal" method="dialog"><button>X</button></form>
+      <form id="close-modal" aria-label="Close modal" method="dialog"><button>X</button></form>
       <div id="painting-preload-info"></div>
       <div id="painting-info"></div>
     </dialog>
@@ -53,10 +53,12 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
 
     const img = document.createElement('img');
     img.src = `https://www.artic.edu/iiif/2/${image_id}/full/${artworkSize},/0/default.jpg`;
-    img.addEventListener('error', () => cardEl.remove());
+    img.onerror = () => cardEl.remove();
+    img.alt = title;
 
     const button = document.createElement('button');
     button.textContent = 'More Info';
+    button.setAttribute('aria-label', `Open modal with info on "${title}"`)
     button.dataset.imageId = image_id;
     button.dataset.title = title;
     button.dataset.artworkId = id;
