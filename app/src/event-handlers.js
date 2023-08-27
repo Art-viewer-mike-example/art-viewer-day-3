@@ -11,3 +11,25 @@ export const handleSearchSubmit = async (e) => {
 
   e.target.reset();
 };
+
+export const handleOpenPaintingModalFromArtworks = (e) => {
+  if (!e.target.matches('button')) return;
+  document.querySelector('#selected-painting-modal').showModal();
+}
+
+export const handleModalBackdropClickToClose = (e) => {
+  const selectedPaintingModal = document.querySelector('#selected-painting-modal');
+  if (!e.target.id === selectedPaintingModal.id) return;
+
+  const modalBox = e.target.getBoundingClientRect();
+  const mousePosition = { x: e.clientX, y: e.clientY };
+
+  const clickedOutsideOfModal = (
+    modalBox.top >= mousePosition.y ||
+    mousePosition.y >= modalBox.top + modalBox.height ||
+    modalBox.left >= mousePosition.x ||
+    mousePosition.x >= modalBox.left + modalBox.width
+  );
+
+  if (clickedOutsideOfModal) selectedPaintingModal.close();
+}

@@ -18,6 +18,11 @@ export const mainSetup = (mainEl) => {
       <button type="submit">Search!</button>
     </form>
 
+    <dialog id="selected-painting-modal">
+      <form id="close-modal" method="dialog"><button>X</button></form>
+      <p>Painting Info</p>
+    </dialog>
+
     <div id="paintings">
       <h2>Paintings</h2>
       <div id="paintings-container"></div>
@@ -26,8 +31,9 @@ export const mainSetup = (mainEl) => {
 
   const paintingsContainer = document.getElementById('paintings-container');
   const searchForm = document.getElementById('search-form');
+  const selectedPaintingModal = document.getElementById('selected-painting-modal');
 
-  return { searchForm, paintingsContainer };
+  return { searchForm, paintingsContainer, selectedPaintingModal };
 }
 
 export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
@@ -48,7 +54,13 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
     img.src = `https://www.artic.edu/iiif/2/${image_id}/full/${artworkSize},/0/default.jpg`;
     img.addEventListener('error', () => cardEl.remove());
 
-    cardEl.append(h3, img);
+    const button = document.createElement('button');
+    button.textContent = 'More Info';
+    button.dataset.imageId = image_id;
+
+    cardEl.append(h3, img, button);
     parentEl.append(cardEl);
   });
 };
+
+export const getSelectedPaintingModal = () => document.querySelector('#selected-painting-modal');
