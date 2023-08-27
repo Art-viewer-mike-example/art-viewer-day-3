@@ -14,8 +14,14 @@ export const handleSearchSubmit = async (e) => {
 
 export const handleOpenPaintingModalFromArtworks = (e) => {
   if (!e.target.matches('button')) return;
-  console.log('e.target.dataset:', e.target.dataset);
-  document.querySelector('#selected-painting-modal').showModal();
+  const selectedPaintingModal = document.querySelector('#selected-painting-modal')
+  const paintingInfo = document.querySelector('#painting-info');
+  const { imageId, artworkId, title } = e.target.dataset;
+  paintingInfo.innerHTML = `
+    <h2>${title}</h2>
+    <img src="https://www.artic.edu/iiif/2/${imageId}/full/843,/0/default.jpg" alt=${title} />
+  `;
+  selectedPaintingModal.showModal();
 }
 
 export const handleModalBackdropClickToClose = (e) => {

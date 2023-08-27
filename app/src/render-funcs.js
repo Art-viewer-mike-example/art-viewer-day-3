@@ -20,7 +20,7 @@ export const mainSetup = (mainEl) => {
 
     <dialog id="selected-painting-modal">
       <form id="close-modal" method="dialog"><button>X</button></form>
-      <p>Painting Info</p>
+      <div id="painting-info"></div>
     </dialog>
 
     <div id="paintings">
@@ -64,5 +64,3 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
     parentEl.append(cardEl);
   });
 };
-
-export const getSelectedPaintingModal = () => document.querySelector('#selected-painting-modal');
