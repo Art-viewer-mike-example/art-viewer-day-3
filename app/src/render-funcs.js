@@ -4,18 +4,20 @@ export const mainSetup = (mainEl) => {
 
     <form id="search-form" aria-labelledby="form-heading">
       <h2 id="form-heading">Search For Paintings By Keyword</h2>
-      <label for="search-input">Keyword:</label>
-      <input type="text" id="search-input" name="keyword" />
-      <fieldset>
-        <legend>Select the number of results you'd like</legend>
-        <input type="radio" id="option-10" name="maxCount" value="10" aria-label="Return up to 10 artworks" checked>
-        <label for="option-10">10</label><br>
-        <input type="radio" id="option-25" name="maxCount" value="25" aria-label="Return up to 25 artworks">
-        <label for="option-25">25</label><br>
+      <label for="search-input" class="block center">
+        Keyword:
+        <input type="text" id="search-input" name="keyword" />
+      </label>
+      <fieldset class="block center">
+      <legend>Select the number of results you'd like</legend>
+        <input type="radio" id="option-25" name="maxCount" value="25" aria-label="Return up to 25 artworks" checked>
+        <label for="option-25">25</label>
         <input type="radio" id="option-50" name="maxCount" value="50" aria-label="Return up to 50 artworks">
         <label for="option-50">50</label>
+        <input type="radio" id="option-100" name="maxCount" value="100" aria-label="Return up to 100 artworks">
+        <label for="option-100">100</label>
       </fieldset>
-      <button type="submit">Search!</button>
+      <button type="submit" class="block center">Search for paintings!</button>
     </form>
 
     <dialog id="selected-painting-modal">
@@ -41,14 +43,15 @@ export const renderPaintings = (parentEl, artworks, artworkSize = 400) => {
   const existingTitles = new Set();
   parentEl.innerHTML = '';
 
-  artworks.forEach(({ id, title, image_id, artwork_type_title}) => {
-    if (artwork_type_title !== 'Painting' || existingTitles.has(title.toLowerCase())) return;
+  artworks.forEach(({ id, title, image_id }) => {
+    if (existingTitles.has(title.toLowerCase())) return;
     existingTitles.add(title.toLowerCase());
 
     const cardEl = document.createElement('div');
     cardEl.classList.add('painting-card');
 
     const h3 = document.createElement('h3');
+    h3.classList.add('painting-title');
     h3.textContent = title;
 
     const img = document.createElement('img');
