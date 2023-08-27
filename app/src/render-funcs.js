@@ -8,12 +8,19 @@ export const mainSetup = (mainEl) => {
       <input type="text" id="search-input" name="keyword" />
       <fieldset>
         <legend>Select the number of results you'd like</legend>
-        <input type="radio" id="option-10" name="maxCount" value="10" aria-label="Return up to 10 artworks" checked>
-        <label for="option-10">10</label><br>
-        <input type="radio" id="option-25" name="maxCount" value="25" aria-label="Return up to 25 artworks">
-        <label for="option-25">25</label><br>
-        <input type="radio" id="option-50" name="maxCount" value="50" aria-label="Return up to 50 artworks">
-        <label for="option-50">50</label>
+        <label for="option-25">
+          <input type="radio" id="option-25" name="maxCount" value="25" aria-label="Return up to 25 artworks" checked>
+          25
+        </label>
+        <label for="option-50">
+          <input type="radio" id="option-50" name="maxCount" value="50" aria-label="Return up to 50 artworks">
+          50
+        </label>
+        <label for="option-100">
+          <input type="radio" id="option-100" name="maxCount" value="100" aria-label="Return up to 100 artworks">
+          100
+        </label>
+
       </fieldset>
       <button type="submit">Search!</button>
     </form>
